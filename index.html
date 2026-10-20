@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>台南美好事物放送局｜線上訂購</title>
+<meta name="description" content="台南浪漫衣服線上訂購，郵寄、7-11 取貨或來店自取。">
+<meta property="og:title" content="台南美好事物放送局｜線上訂購">
+<meta property="og:description" content="台南浪漫衣服線上訂購，郵寄、7-11 取貨或來店自取。">
+<meta name="theme-color" content="#F37021">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@700;900&display=swap">
+<style>
+:root{
+  --bg:#fbf8f5; --surface:#ffffff; --ink:#221a14; --muted:#7a6a5e; --line:#ece2d9;
+  --accent:#F37021; --accent-ink:#ffffff; --accent-soft:#fde9dc;
+  --ok:#2f7d4f; --ok-soft:#e3f2e8; --warn:#a86a00; --warn-soft:#fdf1d8; --bad:#b23a2a; --bad-soft:#f8e1dd;
+  --tee-black:#26221f; --tee-white:#f4f1ec; --tee-stroke:#cfc4b9;
+  --display:"Noto Serif TC","Songti TC",serif;
+  --body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#18130f; --surface:#221b16; --ink:#f3ebe3; --muted:#b3a294; --line:#3a2f27;
+  --accent:#ff8a3d; --accent-ink:#1a120c; --accent-soft:#3d2414;
+  --ok:#6cc893; --ok-soft:#1d3326; --warn:#f0b54a; --warn-soft:#3a2c12; --bad:#f08a7a; --bad-soft:#3d1f1a;
+  --tee-black:#0e0b09; --tee-white:#e9e3dc; --tee-stroke:#4a3d33; color-scheme:dark}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.6;padding-top:env(safe-area-inset-top,0px)}
+img{max-width:100%;display:block}
+[hidden]{display:none!important}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 120px}
+header.top{padding-block:24px 8px;display:flex;flex-direction:column;gap:4px}
+.brand{font-family:var(--display);font-weight:900;font-size:28px;letter-spacing:.04em;text-wrap:balance;margin:0}
+.brand b{color:var(--accent)}
+.sub{color:var(--muted);font-size:13px;margin:0}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-block:12px 20px;overflow-x:auto}
+.tabs button{all:unset;cursor:pointer;padding:10px 14px;font-weight:500;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column}
+.tee{aspect-ratio:1/1;max-width:100%;background:var(--bg);display:grid;place-items:center;position:relative;overflow:hidden}
+.tee svg{width:70%;height:auto}
+.tee img{width:100%;height:100%;object-fit:cover}
+.tee .tag{position:absolute;top:10px;left:10px;font-size:11px;letter-spacing:.06em;background:var(--surface);border:1px solid var(--line);padding:2px 8px;border-radius:99px;color:var(--muted)}
+.card .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:10px;flex:1}
+.name{font-weight:700;font-size:16px;margin:0}
+.price{font-variant-numeric:tabular-nums;color:var(--accent);font-weight:700}
+.sizes{display:flex;flex-wrap:wrap;gap:6px}
+.sz{all:unset;cursor:pointer;min-width:40px;text-align:center;padding:5px 6px;border:1px solid var(--line);border-radius:6px;font-size:13px;font-weight:500;line-height:1.2}
+.sz small{display:block;font-size:10px;color:var(--muted);font-weight:400}
+.sz[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.sz:disabled{cursor:not-allowed;opacity:.4;text-decoration:line-through}
+.sz:focus-visible,.btn:focus-visible,.qty button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn{all:unset;cursor:pointer;text-align:center;padding:10px 16px;border-radius:8px;font-weight:700;background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:500}
+.btn.small{padding:6px 10px;font-size:13px}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.cartbar{position:fixed;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding-top:12px;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));z-index:5}
+.cartbar .in{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:12px;justify-content:space-between}
+.cartbar .sum{font-variant-numeric:tabular-nums}
+h2{font-family:var(--display);font-size:20px;margin:0 0 4px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.stack{display:flex;flex-direction:column;gap:16px}
+.line{display:flex;justify-content:space-between;gap:12px;align-items:center;font-variant-numeric:tabular-nums}
+.line .l{min-width:0}
+.qty{display:flex;align-items:center;gap:6px}
+.qty button{all:unset;cursor:pointer;width:28px;height:28px;border:1px solid var(--line);border-radius:6px;text-align:center;line-height:28px}
+.qty button:disabled{opacity:.35;cursor:not-allowed}
+.qty span{min-width:20px;text-align:center;font-variant-numeric:tabular-nums}
+.total{border-top:1px solid var(--line);padding-top:10px;font-weight:700;font-size:17px}
+label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:500}
+input,textarea{font:inherit;font-size:16px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);width:100%}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:0}
+.radio{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.radio label{flex-direction:row;align-items:center;gap:8px;border:1px solid var(--line);border-radius:8px;padding:10px;cursor:pointer;font-weight:500}
+.radio label:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.radio input{width:auto}
+@media (max-width:440px){.radio{grid-template-columns:1fr}}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.err{color:var(--bad);font-size:13px;margin:0}
+.muted{color:var(--muted);font-size:13px;margin:0}
+.paybox{border:2px dashed var(--accent);border-radius:10px;padding:16px;display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-variant-numeric:tabular-nums}
+.paybox dt{color:var(--muted);font-size:13px}
+.paybox dd{margin:0;font-weight:700;user-select:all}
+.big{font-size:22px;color:var(--accent)}
+.ordno{font-family:var(--display);font-size:24px;letter-spacing:.06em;user-select:all}
+.msg{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:12px;font-size:14px;user-select:all}
+.row{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:2px 10px;border-radius:99px}
+.pill.s0{background:var(--warn-soft);color:var(--warn)}
+.pill.s1{background:var(--ok-soft);color:var(--ok)}
+.pill.s2{background:var(--accent-soft);color:var(--accent)}
+.pill.s3{background:var(--bad-soft);color:var(--bad)}
+.order{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:14px;display:flex;flex-direction:column;gap:8px}
+.order .hd{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.order ul{margin:0;padding-left:18px;font-size:14px}
+.state{padding:40px 16px;text-align:center;color:var(--muted)}
+footer{border-top:1px solid var(--line);margin-top:40px;padding-top:16px;display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted)}
+footer a{color:var(--ink)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(84px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:8px 16px;border-radius:99px;font-size:14px;z-index:9;max-width:calc(100% - 32px);text-align:center}
+@media (prefers-reduced-motion:no-preference){.card{transition:transform .15s}.card:hover{transform:translateY(-2px)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1 class="brand">台南美好事物<b>放送局</b></h1>
+    <p class="sub">台南浪漫衣服 線上訂購｜匯款後回報官方 LINE 完成訂單</p>
+  </header>
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tab-shop" aria-selected="true" data-view="shop">選購商品</button>
+    <button role="tab" id="tab-track" aria-selected="false" data-view="track">查詢訂單</button>
+  </nav>
+  <main id="app"><div class="state">商品載入中…</div></main>
+  <footer>
+    <span>台南美好事物放送局｜Instagram <a href="https://www.instagram.com/tainanveryverygood" target="_blank" rel="noopener">@tainanveryverygood</a></span>
+    <span>官方 LINE：<b id="foot-line">@297qsshq</b></span>
+    <span>你填寫的資料只用於這筆訂單的出貨與聯繫。</span>
+  </footer>
+</div>
+<div class="cartbar" id="cartbar" hidden><div class="in"><span class="sum" id="cartsum"></span><button class="btn" id="gocheckout">前往結帳</button></div></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+// 部署 Google Apps Script 後，把網頁應用程式網址貼在這裡
+const API = "https://script.google.com/macros/s/AKfycbzVSP0T23rEX0rp-XjK18pjPhbIeEGk2uikIf8yG1qyuEDuk8KOYn7zGQBELojIFl-C/exec";
+
+let C = { bank:"", account:"", line:"@297qsshq", holdHours:24, sizes:["S","M","L","XL","2XL","3XL"],
+  ship:{ post:{label:"郵寄",fee:100}, seven:{label:"7-11 取貨",fee:100}, pickup:{label:"來店自取",fee:0} } };
+let PRODUCTS = null, loadErr = "";
+let view = "shop", sel = {}, qtySel = {}, formErr = "", sending = false, trackIn = {}, trackRes = null, trackBusy = false;
+let cart = ls("mh-cart", []), draft = ls("mh-draft", { ship:"post" }), lastOrder = ls("mh-last", null);
+
+function ls(k, d){ try { const v = JSON.parse(localStorage.getItem(k)); return v == null ? d : v } catch(e){ return d } }
+function lsSet(k, v){ try { localStorage.setItem(k, JSON.stringify(v)) } catch(e){} }
+const $ = s => document.querySelector(s);
+const money = n => "NT$" + Number(n).toLocaleString("zh-TW");
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const P = id => (PRODUCTS || []).find(p => p.id === id);
+const fmt = t => new Date(t).toLocaleString("zh-TW", { timeZone:"Asia/Taipei", month:"numeric", day:"numeric", hour:"2-digit", minute:"2-digit", hour12:false });
+function toast(m){ const t = $("#toast"); t.textContent = m; t.hidden = false; clearTimeout(toast.t); toast.t = setTimeout(() => t.hidden = true, 2600) }
+const inCart = (pid, sz) => cart.filter(c => c.pid === pid && c.size === sz).reduce((a, c) => a + c.qty, 0);
+const saveCart = () => lsSet("mh-cart", cart);
+
+async function loadProducts(){
+  try {
+    const r = await fetch(API + "?action=products", { cache:"no-store" });
+    const d = await r.json();
+    if (!d.ok) throw new Error();
+    PRODUCTS = d.products; C = Object.assign(C, d.config || {}); loadErr = "";
+    cart = cart.filter(c => P(c.pid) && C.sizes.includes(c.size)).map(c => ({ ...c, qty: Math.min(c.qty, P(c.pid).stock[c.size]) })).filter(c => c.qty > 0);
+    saveCart();
+    $("#foot-line").textContent = C.line;
+  } catch(e) {
+    loadErr = "商品暫時載入不出來，請重新整理頁面，或到官方 LINE 詢問。";
+  }
+  render();
+}
+
+function tee(p){
+  if (p.image) return `<img src="${esc(p.image)}" alt="${esc(p.name)}（${esc(p.color)}）" loading="lazy">`;
+  const fill = p.color === "白" ? "var(--tee-white)" : "var(--tee-black)";
+  return `<svg viewBox="0 0 200 190" aria-hidden="true"><path d="M66 10 L20 32 L2 70 L34 84 L44 66 L44 182 L156 182 L156 66 L166 84 L198 70 L180 32 L134 10 C126 18 114 22 100 22 C86 22 74 18 66 10Z" fill="${fill}" stroke="var(--tee-stroke)" stroke-width="2" stroke-linejoin="round"/></svg><span class="tag">照片準備中</span>`;
+}
+
+function renderShop(){
+  if (loadErr) return `<div class="state">${esc(loadErr)}<br><br><button class="btn ghost" data-reload="1">重新載入</button></div>`;
+  if (!PRODUCTS) return `<div class="state">商品載入中…</div>`;
+  if (!PRODUCTS.length) return `<div class="state">目前沒有上架中的商品，請稍後再來看看。</div>`;
+  return `<div class="grid">${PRODUCTS.map(p => { const s = sel[p.id];
+    const left = s ? p.stock[s] - inCart(p.id, s) : 0, q = Math.min(qtySel[p.id] || 1, Math.max(left, 1));
+    return `<article class="card"><div class="tee">${tee(p)}</div>
+    <div class="body"><div><h3 class="name">${esc(p.name)}（${esc(p.color)}）</h3><span class="price">${money(p.price)}</span></div>
+    <div class="sizes">${C.sizes.map(z => { const l = (p.stock[z] || 0) - inCart(p.id, z);
+      return `<button class="sz" data-p="${esc(p.id)}" data-z="${z}" aria-pressed="${s === z}" ${l <= 0 ? "disabled" : ""}>${z}<small>${l <= 0 ? "售完" : "剩 " + l}</small></button>` }).join("")}</div>
+    <div class="line"><span class="muted">數量</span><div class="qty"><button data-cq="${esc(p.id)}" data-d="-1" aria-label="減少數量" ${!s || q <= 1 ? "disabled" : ""}>−</button><span>${q}</span><button data-cq="${esc(p.id)}" data-d="1" aria-label="增加數量" ${!s || q >= left ? "disabled" : ""}>＋</button></div></div>
+    <button class="btn" data-add="${esc(p.id)}" ${s ? "" : "disabled"}>${s ? "加入購物車｜" + s : "請先選尺寸"}</button></div></article>` }).join("")}</div>`;
+}
+
+function totals(){ return { sub: cart.reduce((a, c) => a + (P(c.pid)?.price || 0) * c.qty, 0), count: cart.reduce((a, c) => a + c.qty, 0) } }
+
+function renderCheckout(){
+  if (!cart.length) return `<div class="panel"><h2>購物車是空的</h2><p class="muted">回到選購商品挑一件喜歡的吧。</p><button class="btn ghost" data-go="shop">回去選購</button></div>`;
+  const { sub } = totals(), f = draft, ship = C.ship[f.ship] ? f.ship : "post", fee = C.ship[ship].fee;
+  return `<div class="stack"><div class="panel"><h2>購物車</h2>
+  ${cart.map((c, i) => { const p = P(c.pid); return `<div class="line"><div class="l"><b>${esc(p.name)}（${esc(p.color)}）</b> ${c.size}<br><span class="muted">${money(p.price)} / 件</span></div>
+   <div class="qty"><button data-q="${i}" data-d="-1" aria-label="減少">−</button><span>${c.qty}</span><button data-q="${i}" data-d="1" aria-label="增加" ${c.qty >= p.stock[c.size] ? "disabled" : ""}>＋</button></div></div>` }).join("")}
+  <div class="line"><span>商品小計</span><span>${money(sub)}</span></div>
+  <div class="line"><span>運費（${C.ship[ship].label}）</span><span>${money(fee)}</span></div>
+  <div class="line total"><span>應付金額</span><span>${money(sub + fee)}</span></div></div>
+  <form class="panel" id="form" novalidate><h2>訂購資料</h2>
+   <label for="f-name">收件人姓名<input id="f-name" name="name" autocomplete="name" value="${esc(f.name || "")}"></label>
+   <label for="f-phone">手機<input id="f-phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="09xxxxxxxx" value="${esc(f.phone || "")}"></label>
+   <div><span style="font-size:13px;font-weight:500">取貨方式</span><div class="radio">
+    ${Object.entries(C.ship).map(([k, v]) => `<label><input type="radio" name="ship" id="f-ship-${k}" value="${k}" ${ship === k ? "checked" : ""}>${esc(v.label)}${v.fee ? ` +${v.fee}` : "（免運）"}</label>`).join("")}</div></div>
+   ${ship === "post" ? `<label for="f-addr">收件地址<input id="f-addr" name="addr" autocomplete="street-address" value="${esc(f.addr || "")}"></label>` : ""}
+   ${ship === "seven" ? `<label for="f-store">7-11 門市名稱或店號<input id="f-store" name="store" placeholder="例：成大門市 / 123456" value="${esc(f.store || "")}"></label>` : ""}
+   ${ship === "pickup" ? `<p class="muted">付款確認後，我們會在官方 LINE 通知取貨時間。</p>` : ""}
+   <label for="f-note">備註（選填）<textarea id="f-note" name="note" rows="2">${esc(f.note || "")}</textarea></label>
+   <label class="hp" aria-hidden="true">網站<input id="f-website" name="website" tabindex="-1" autocomplete="off"></label>
+   ${formErr ? `<p class="err">${esc(formErr)}</p>` : ""}
+   <p class="muted">送出後商品會為你保留 ${C.holdHours} 小時，期限內完成匯款並回報後五碼，訂單才算成立。</p>
+   <button class="btn" type="submit" ${sending ? "disabled" : ""}>${sending ? "送出中…" : "送出訂單"}</button></form></div>`;
+}
+
+const lineMsg = o => `【線上訂單匯款回報】\n訂單編號：${o.no}\n收件人：${o.name}\n匯款金額：${money(o.total)}\n匯款帳號後五碼：`;
+const lineUrl = o => "https://line.me/R/oaMessage/" + encodeURIComponent(C.line) + "/?" + encodeURIComponent(lineMsg(o));
+
+function renderDone(){ const o = lastOrder; if (!o) return renderShop();
+  return `<div class="stack"><div class="panel"><p class="muted">訂單已送出，等待付款</p><div class="ordno">${esc(o.no)}</div>
+   <p class="muted">商品已為你保留到 <b>${fmt(o.deadline)}</b>，逾時未付款訂單會自動取消。請記下訂單編號，之後可以在「查詢訂單」查看進度。</p></div>
+   <div class="panel"><h2>第一步：匯款</h2><dl class="paybox">
+    <dt>銀行</dt><dd>${esc(C.bank)}</dd><dt>帳號</dt><dd>${esc(C.account)}</dd>
+    <dt>金額</dt><dd class="big">${money(o.total)}</dd><dt>期限</dt><dd>${fmt(o.deadline)}</dd></dl>
+    <button class="btn ghost small" data-copy="${esc(C.account)}">複製帳號</button></div>
+   <div class="panel"><h2>第二步：回報後五碼到官方 LINE</h2>
+    <p class="muted">點下方按鈕會開啟官方 LINE（${esc(C.line)}）並帶入這段訊息，補上匯款帳號後五碼送出即可。</p>
+    <div class="msg" id="lmsg">${esc(lineMsg(o))}</div>
+    <div class="row"><a class="btn" href="${lineUrl(o)}" target="_blank" rel="noopener">開啟官方 LINE 回報</a><button class="btn ghost" data-copy-msg="1">複製訊息</button></div>
+    <p class="muted">還沒加好友？在 LINE 搜尋 ID：<b style="user-select:all">${esc(C.line)}</b></p></div>
+   <button class="btn ghost" data-go="shop">繼續逛逛</button></div>`;
+}
+
+const STC = { "待付款":"s0", "已付款":"s1", "已出貨":"s2", "已取消":"s3" };
+const TIP = { "待付款":"請在期限前完成匯款，並到官方 LINE 回報後五碼。", "已付款":"已收到款項，我們會盡快安排出貨。", "已出貨":"商品已寄出，請留意取件通知。", "已取消":"這張訂單已取消。如果你已經匯款，請到官方 LINE 告訴我們，我們會協助處理。" };
+function renderTrack(){ const r = trackRes;
+  return `<div class="stack"><form class="panel" id="track-form" novalidate><h2>查詢訂單</h2>
+   <label for="t-no">訂單編號<input id="t-no" name="no" placeholder="例：MH20261020-001" value="${esc(trackIn.no || lastOrder?.no || "")}"></label>
+   <label for="t-phone">下單時填的手機<input id="t-phone" name="phone" inputmode="tel" placeholder="09xxxxxxxx" value="${esc(trackIn.phone || draft.phone || "")}"></label>
+   ${r && !r.ok ? `<p class="err">${r.error === "not_found" ? "找不到這張訂單，請確認訂單編號和手機是否正確。" : esc(r.error || "查詢失敗，請稍後再試")}</p>` : ""}
+   <button class="btn" type="submit" ${trackBusy ? "disabled" : ""}>${trackBusy ? "查詢中…" : "查詢"}</button></form>
+   ${r && r.ok ? (o => `<div class="order"><div class="hd"><b>${esc(o.no)}</b><span class="pill ${STC[o.status] || "s0"}">${esc(o.status)}</span></div>
+    <ul>${o.summary.map(s => `<li>${esc(s)}</li>`).join("")}</ul>
+    <div class="line"><span>${esc(o.ship)}</span><b>${money(o.total)}</b></div>
+    ${o.status === "待付款" && o.deadline ? `<p class="muted">付款期限：${fmt(o.deadline)}</p>` : ""}
+    <p class="muted">${TIP[o.status] || ""}</p></div>`)(r.order) : ""}</div>`;
+}
+
+function render(){
+  const tab = view === "track" ? "track" : "shop";
+  document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-selected", String(b.dataset.view === tab)));
+  $("#app").innerHTML = view === "checkout" ? renderCheckout() : view === "done" ? renderDone() : view === "track" ? renderTrack() : renderShop();
+  const { sub, count } = totals();
+  $("#cartbar").hidden = !(view === "shop" && count > 0 && PRODUCTS);
+  $("#cartsum").innerHTML = `購物車 ${count} 件｜<b>${money(sub)}</b>`;
+}
+function go(v){ view = v; formErr = ""; render(); window.scrollTo({ top:0 }) }
+
+document.addEventListener("click", e => { const t = e.target.closest("button,a"); if (!t) return; const d = t.dataset;
+  if (d.view){ trackRes = null; go(d.view) }
+  else if (d.go) go(d.go);
+  else if (d.reload){ loadErr = ""; PRODUCTS = null; render(); loadProducts() }
+  else if (d.p){ sel[d.p] = sel[d.p] === d.z ? null : d.z; qtySel[d.p] = 1; render() }
+  else if (d.cq){ const z = sel[d.cq]; if (!z) return; const left = P(d.cq).stock[z] - inCart(d.cq, z); qtySel[d.cq] = Math.max(1, Math.min(left, (qtySel[d.cq] || 1) + +d.d)); render() }
+  else if (d.add){ const z = sel[d.add]; if (!z) return; const left = P(d.add).stock[z] - inCart(d.add, z); const n = Math.min(qtySel[d.add] || 1, left); if (n <= 0) return;
+    const ex = cart.find(c => c.pid === d.add && c.size === z); ex ? ex.qty += n : cart.push({ pid:d.add, size:z, qty:n }); sel[d.add] = null; qtySel[d.add] = 1; saveCart(); render(); toast(`已加入購物車 ${n} 件`) }
+  else if (d.q != null){ const c = cart[+d.q]; c.qty += +d.d; if (c.qty <= 0) cart.splice(+d.q, 1); saveCart(); render() }
+  else if (d.copy || d.copyMsg){ const txt = d.copy || lineMsg(lastOrder);
+    (navigator.clipboard ? navigator.clipboard.writeText(txt) : Promise.reject()).then(() => toast("已複製"), () => { const el = $("#lmsg"); if (el){ const r = document.createRange(); r.selectNodeContents(el); getSelection().removeAllRanges(); getSelection().addRange(r) } toast("請長按選取後複製") }) }
+  else if (t.id === "gocheckout") go("checkout");
+});
+document.addEventListener("input", e => { const t = e.target;
+  if (t.closest("#track-form")) trackIn[t.name] = t.value;
+  else if (t.closest("#form") && t.name !== "website"){ draft[t.name] = t.value; lsSet("mh-draft", draft); if (t.name === "ship") render() }
+});
+document.addEventListener("submit", async e => {
+  e.preventDefault();
+  if (e.target.id === "track-form"){
+    const no = (trackIn.no ?? $("#t-no").value).trim(), phone = trackIn.phone ?? $("#t-phone").value;
+    trackBusy = true; render();
+    try { const r = await fetch(API + "?action=track&no=" + encodeURIComponent(no) + "&phone=" + encodeURIComponent(phone), { cache:"no-store" }); trackRes = await r.json() }
+    catch(x){ trackRes = { ok:false, error:"連線失敗，請檢查網路後再試一次" } }
+    trackIn = { no, phone }; trackBusy = false; render(); return;
+  }
+  if (e.target.id !== "form" || sending) return;
+  const f = draft, ship = C.ship[f.ship] ? f.ship : "post";
+  if (!(f.name || "").trim()) formErr = "請填寫收件人姓名";
+  else if (!/^09\d{8}$/.test((f.phone || "").replace(/\D/g, ""))) formErr = "手機請填 09 開頭的 10 碼";
+  else if (ship === "post" && !(f.addr || "").trim()) formErr = "請填寫收件地址";
+  else if (ship === "seven" && !(f.store || "").trim()) formErr = "請填寫 7-11 門市名稱或店號";
+  else formErr = "";
+  if (formErr){ render(); return }
+  sending = true; render();
+  const payload = { name:f.name, phone:f.phone, ship, addr:f.addr || "", store:f.store || "", note:f.note || "",
+    website: $("#f-website")?.value || "", items: cart.map(c => ({ id:c.pid, size:c.size, qty:c.qty })) };
+  try {
+    const r = await fetch(API, { method:"POST", body: JSON.stringify(payload) });
+    const d = await r.json();
+    sending = false;
+    if (!d.ok){ formErr = d.error || "送出失敗，請稍後再試"; if (d.short) await loadProducts(); render(); return }
+    lastOrder = { no:d.no, total:d.total, deadline:d.deadline, name:d.name }; lsSet("mh-last", lastOrder);
+    cart = []; saveCart(); draft.note = ""; lsSet("mh-draft", draft);
+    loadProducts(); go("done");
+  } catch(x){
+    sending = false; formErr = "連線失敗，無法確定訂單有沒有送出。請先到官方 LINE 詢問，確認後再決定要不要重新下單，避免重複訂購。"; render();
+  }
+});
+
+render();
+loadProducts();
+</script>
+</body>
+</html>
